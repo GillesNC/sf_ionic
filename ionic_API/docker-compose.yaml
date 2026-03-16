@@ -1,0 +1,10 @@
+services:
+  node_ionic:
+    image: node:25-alpine3.23
+    container_name: ionic_travel
+    working_dir: /app
+    ports:
+      - "8100:8100"
+    volumes:
+      - ./:/app
+    command: sleep infinity
