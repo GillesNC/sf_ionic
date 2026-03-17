@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { login } from "../../services/authServices";
 import {
+  IonBackButton,
+  IonHeader,
+  IonTitle,
+  IonGrid,
+  IonRow,
+  IonCol,
   IonButton,
   IonContent,
   IonIcon,
@@ -9,7 +15,6 @@ import {
   IonToast,
 } from "@ionic/react";
 import {
-  bagHandleOutline,
   mailOutline,
   lockClosedOutline,
   eyeOutline,
@@ -41,17 +46,20 @@ export default function Login() {
 
   return (
     <IonPage className="login-page">
-      <IonContent className="login-content">
+      <IonHeader>
+        <IonGrid>
+          <IonRow>
+            <IonCol size="auto">
+              <IonBackButton defaultHref="/Tab1" />
+            </IonCol>
+            <IonCol>
+              <IonTitle className="registerTitle">Connexion</IonTitle>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonHeader>
+      <IonContent className="login-content ion-padding">
         <div className="login-card">
-          <div className="login-logo">
-            <div className="login-logo-box">
-              <IonIcon icon={bagHandleOutline} />
-            </div>
-          </div>
-
-          <h1 className="login-title">Se connecter</h1>
-          <p className="login-subtitle">Connecte-toi à ton compte</p>
-
           <div className="login-field-label">
             <span>Adresse email</span>
           </div>
@@ -65,17 +73,13 @@ export default function Login() {
             />
           </div>
 
-          <div className="login-field-label">
-            <span>Mot de passe</span>
-            <a href="#">Mot de passe oublié ?</a>
-          </div>
           <div className="login-input-wrapper">
             <IonIcon icon={lockClosedOutline} />
             <IonInput
               type={showPassword ? "text" : "password"}
               placeholder="••••••••"
               value={password}
-              onIonChange={(e) => setPassword(e.detail.value!)}
+              onIonInput={(e) => setPassword(e.detail.value!)}
             />
             <button
               className="login-eye-btn"
