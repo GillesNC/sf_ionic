@@ -48,26 +48,25 @@ export async function logout() {
 }
 
 export async function getToken() {
-  const { value } = await Preferences.get({ key: "token" });
+  //const { value } = await Preferences.get({ key: "token" });
+  const value  = await localStorage.getItem("token");
   return value;
 }
 
 export async function getProfile() {
   const token = await getToken();
-
-  if (!token) {
-    throw new Error("Utilisateur non authentifié");
-  }
-
-  const response = await fetch(`${API_URL}/profile`, {
+  console.log("Token récupéré pour getProfileById:", token); // Debug: Affiche le token récupéré
+  const response = await fetch(`${API_URL}/profile/${token}}`, {
+    method: "GET",
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
 
   if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(errorData.message || "Impossible de récupérer le profil");
+    throw new Error(errorData.message || "Erreur lors de la récupération du profil");
   }
 
   return await response.json();

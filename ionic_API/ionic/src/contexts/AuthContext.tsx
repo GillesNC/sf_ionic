@@ -1,39 +1,47 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import  { login, logout } from "../services/authServices";
+import  { getToken } from "../services/authServices";
 
 interface AuthContextType {
-  isActive: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  isLoggedIn: boolean;
+  setIsLoggedIn: (value: boolean) => void;
   logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC = ({ children }: any) => {
-  const [isActive, setIsActive] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const history = useHistory(); // Hook pour la navigation
 
-  const login = async (email: string, password: string) => {
-    try {
-      await login(email, password);
-      setIsActive(true);
-    } catch (error) {
-      console.error("Echec de la connexion:", error);
-    }
-  };
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await getToken();
+      setIsLoggedIn(!!token);
+    };
+    checkToken();
+  }, []);
 
   const logout = async () => {
     await logout();
-    setIsActive(false);
+    setIsLoggedIn(false);
     history.push("/login");
   };
 
   return (
-    <AuthContext.Provider value={{ isActive, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export default AuthContext;
+export const useAuth = () => {
+
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error("useAuth doit être utilisé dans AuthProvider");
+  }
+
+  return context;
+};

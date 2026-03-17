@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { login } from "../../services/authServices";
+import { useAuth } from "../../hooks/useAuth";
 import {
   IonButton,
   IonContent,
@@ -21,6 +22,7 @@ export default function Login() {
   const [alertMessage, setAlertMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
+  const { setIsLoggedIn, setUserId } = useAuth();
 
   async function handleLogin() {
     if (!email || !password) {
@@ -29,9 +31,11 @@ export default function Login() {
     }
 
     try {
-      await login(email, password);
+      const data = await login(email, password);
+      setIsLoggedIn(true);
+      setUserId(data.id);
       setAlertMessage("Connexion réussie !");
-      history.push("/Homepage");
+      history.push(`/profil/${data.id}`);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setAlertMessage(`Erreur : ${error.message}`);

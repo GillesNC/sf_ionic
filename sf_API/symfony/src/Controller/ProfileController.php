@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,20 +9,14 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ProfileController extends AbstractController
 {
     #[Route('/profile/{id}', name: 'profile', methods: ['GET'])]
-    public function getProfile(User $user, JWTTokenManagerInterface $JWTTokenManager): JsonResponse
+    public function getProfile(): JsonResponse
     {
-        $token = $JWTTokenManager->create($user);
+        $user = $this->getUser();
 
-        if (!$user || !$token) {
-            return $this->json(['error' => 'User not found'], JsonResponse::HTTP_NOT_FOUND);
-        } 
+        if (!$user) {
+            return new JsonResponse(['error' => 'Non authentifié'], 401);
+        }
 
-        return $this->json([
-            'id' => $user->getId(),
-            'email' => $user->getEmail(),
-            'name' => $user->getName(),
-            'token' => $token
-        ]);
-
+        return $this->json($user);
     }
 }

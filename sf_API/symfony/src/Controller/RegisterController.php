@@ -35,7 +35,7 @@ final class RegisterController extends AbstractController
         //Création user et assignation des données
         $user = new User();
         $user->setEmail($data['email']);
-        $user->setUsername($data['username']);
+        $user->setName($data['name']);
 
         //Hashage du mot de passe
         $hash = $userPasswordHasher->hashPassword($user, $data['password']);

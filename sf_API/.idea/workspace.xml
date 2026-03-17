@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c02866d-a677-43c1-a16c-5076a073402d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../ionic_API/ionic/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_API/ionic/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ionic_API/ionic/src/pages/Tab1.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ionic_API/ionic/src/pages/Tab1.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ionic_API/ionic/src/pages/Tab2.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ionic_API/ionic/src/pages/Tab2.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ionic_API/ionic/src/pages/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_API/ionic/src/pages/login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/56180fa0-9ae0-4b78-9faf-fc236614eed9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/56180fa0-9ae0-4b78-9faf-fc236614eed9/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/56180fa0-9ae0-4b78-9faf-fc236614eed9/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ionic_API/ionic/src/pages/profil/Profil.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../ionic_API/ionic/src/pages/profil/Profil.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/15903218-d6b9-4884-acc2-3481ce0118f6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/15903218-d6b9-4884-acc2-3481ce0118f6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony/config/reference.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/config/reference.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony/src/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/src/Controller/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony/src/Controller/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/src/Controller/RegisterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
