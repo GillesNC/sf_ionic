@@ -16,18 +16,18 @@ import { register } from "../../services/authServices";
 
 export default function Register() {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
 
   async function handleSubmit() {
-    if (!email || !username || !password) {
+    if (!email || !name || !password) {
       setAlertMessage("Veuillez remplir tous les champs.");
       return;
     }
 
     try {
-      await register(email, username, password);
+      await register(email, name, password);
       setAlertMessage("Inscription réussie !");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -54,8 +54,8 @@ export default function Register() {
         <IonLabel position="floating">Votre pseudo</IonLabel>
         <IonInput
           type="text"
-          value={username}
-          onIonChange={(e) => setUsername(e.detail.value!)}
+          value={name}
+          onIonChange={(e) => setName(e.detail.value!)}
         ></IonInput>
 
         <IonLabel position="floating">Votre adresse e-mail</IonLabel>

@@ -10,14 +10,14 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, square, triangle } from "ionicons/icons";
+import { home, logIn, person } from "ionicons/icons";
 
 // Import des pages
-import Tab1 from "./pages/Tab1";
-import Tab2 from "./pages/Tab2";
+import Homepage from "./pages/Homepage/Homepage";
 import Tab3 from "./pages/Tab3";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import Profil from "./pages/profil/Profil";
 
 // Import des composants
 import Header from "./components/header/header";
@@ -47,7 +47,7 @@ import "@ionic/react/css/display.css";
 
 /* import '@ionic/react/css/palettes/dark.always.css'; */
 /* import '@ionic/react/css/palettes/dark.class.css'; */
-import "@ionic/react/css/palettes/dark.system.css";
+//import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
 import "./theme/variables.css";
@@ -60,11 +60,11 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/homepage">
+            <Homepage />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route exact path="/profil/">
+            <Profil />
           </Route>
           <Route path="/tab3">
             <Tab3 />
@@ -76,7 +76,7 @@ const App: React.FC = () => (
             <Login />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/homepage" />
           </Route>
         </IonRouterOutlet>
 
@@ -85,17 +85,17 @@ const App: React.FC = () => (
 
         {/* SECTION TABBAR */}
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+          <IonTabButton tab="Homepage" href="/homepage">
+            <IonIcon aria-hidden="true" icon={home} />
+            <IonLabel>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+          <IonTabButton tab="profil" href="/profil">
+            <IonIcon aria-hidden="true" icon={person} />
+            <IonLabel>Profil</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="login" href="/login">
+            <IonIcon aria-hidden="true" icon={logIn} />
+            <IonLabel>Login</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

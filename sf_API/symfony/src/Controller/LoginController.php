@@ -30,7 +30,7 @@ final class LoginController extends AbstractController
         $token = $JWTTokenManager->create($user);
 
         return $this->json([
-            'message' => $token, Response::HTTP_ACCEPTED
+            'message' => 'Mon token est : ' . $token, Response::HTTP_ACCEPTED
         ]);
     }
 }
