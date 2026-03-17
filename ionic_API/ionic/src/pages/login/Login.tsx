@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { login } from "../../services/authServices";
 import {
-  IonBackButton,
-  IonHeader,
-  IonTitle,
-  IonGrid,
-  IonRow,
-  IonCol,
   IonButton,
   IonContent,
   IonIcon,
@@ -15,12 +9,11 @@ import {
   IonToast,
 } from "@ionic/react";
 import {
-  mailOutline,
-  lockClosedOutline,
   eyeOutline,
   eyeOffOutline,
 } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
+import "./Login.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -38,6 +31,7 @@ export default function Login() {
     try {
       await login(email, password);
       setAlertMessage("Connexion réussie !");
+      history.push("/Homepage");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setAlertMessage(`Erreur : ${error.message}`);
@@ -45,62 +39,55 @@ export default function Login() {
   }
 
   return (
-    <IonPage className="login-page">
-      <IonHeader>
-        <IonGrid>
-          <IonRow>
-            <IonCol size="auto">
-              <IonBackButton defaultHref="/Tab1" />
-            </IonCol>
-            <IonCol>
-              <IonTitle className="registerTitle">Connexion</IonTitle>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonHeader>
-      <IonContent className="login-content ion-padding">
-        <div className="login-card">
-          <div className="login-field-label">
-            <span>Adresse email</span>
-          </div>
-          <div className="login-input-wrapper">
-            <IonIcon icon={mailOutline} />
-            <IonInput
-              type="email"
-              placeholder="nom@exemple.com"
-              value={email}
-              onIonChange={(e) => setEmail(e.detail.value!)}
-            />
-          </div>
+    <IonPage>
+      <IonContent className="ion-padding">
+        <div className="login-container">
+          <h2 className="login-title">Se connecter</h2>
+          <p>Bienvenue ! Connectez-vous pour accéder à votre compte.</p>
+          <div className="login-card">
+            <div className="login-field-label">
+              <span>Adresse email</span>
+            </div>
+            <div className="login-input-wrapper">
+              <IonInput
+                type="email"
+                placeholder="nom@exemple.com"
+                value={email}
+                onIonChange={(e) => setEmail(e.detail.value!)}
+              />
+            </div>
 
-          <div className="login-input-wrapper">
-            <IonIcon icon={lockClosedOutline} />
-            <IonInput
-              type={showPassword ? "text" : "password"}
-              placeholder="••••••••"
-              value={password}
-              onIonInput={(e) => setPassword(e.detail.value!)}
-            />
-            <button
-              className="login-eye-btn"
-              onClick={() => setShowPassword(!showPassword)}
+            <div className="login-field-label">
+              <span>Mot de passe</span>
+            </div>
+            <div className="login-input-wrapper">
+              <IonInput
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                value={password}
+                onIonInput={(e) => setPassword(e.detail.value!)}
+              />
+              <button
+                className="login-eye-btn"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                <IonIcon icon={showPassword ? eyeOffOutline : eyeOutline} />
+              </button>
+            </div>
+
+            <IonButton
+              expand="block"
+              className="login-submit-btn"
+              onClick={handleLogin}
             >
-              <IonIcon icon={showPassword ? eyeOffOutline : eyeOutline} />
-            </button>
+              Se connecter
+            </IonButton>
+
+            <p className="login-register-link">
+              Pas encore de compte ?{" "}
+              <a onClick={() => history.push("/register")}>Créer un compte</a>
+            </p>
           </div>
-
-          <IonButton
-            expand="block"
-            className="login-submit-btn"
-            onClick={handleLogin}
-          >
-            Se connecter
-          </IonButton>
-
-          <p className="login-register-link">
-            Pas encore de compte ?{" "}
-            <a onClick={() => history.push("/register")}>Créer un compte</a>
-          </p>
         </div>
 
         <IonToast

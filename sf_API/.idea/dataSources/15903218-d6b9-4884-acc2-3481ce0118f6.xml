@@ -935,7 +935,7 @@ symfony|schema||m2i||UPDATE|G</Grants>
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <Current>1</Current>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2026-03-16.10:06:51</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-03-17.08:31:30</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="291" parent="1" name="m2i"/>
