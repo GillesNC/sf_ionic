@@ -45,6 +45,7 @@ class Activity
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'activities')]
+    #[Groups(['activity:read'])]
     private ?User $user = null;
 
     public function __construct()

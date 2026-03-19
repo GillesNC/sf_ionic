@@ -1,0 +1,26 @@
+.activity-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+.activity-spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.accordion {
+  background-color: red;
+}
+
+.accordion {
+  background-color: red;
+}
+
+.item {
+  border: 1px solid #eca1ff;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}

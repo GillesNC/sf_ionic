@@ -10,7 +10,8 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { home, logIn, person } from "ionicons/icons";
+import { home, logIn, person, list } from "ionicons/icons";
+import { AuthProvider } from "./contexts/AuthContext";
 
 // Import des pages
 import Homepage from "./pages/Homepage/Homepage";
@@ -18,6 +19,7 @@ import Tab3 from "./pages/Tab3";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Profil from "./pages/profil/Profil";
+import Activity from "./pages/activity/Activity";
 
 // Import des composants
 import Header from "./components/header/header";
@@ -58,47 +60,59 @@ const App: React.FC = () => (
   <IonApp>
     {/* SECTION ROUTE */}
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/homepage">
-            <Homepage />
-          </Route>
-          <Route exact path="/profil/">
-            <Profil />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/homepage" />
-          </Route>
-        </IonRouterOutlet>
+      <AuthProvider>
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route exact path="/homepage">
+              <Homepage />
+            </Route>
+            <Route path="/tab3">
+              <Tab3 />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
 
-        {/* HEADER */}
-        <Header />
+            <Route path="/profil">
+              <Profil />
+            </Route>
 
-        {/* SECTION TABBAR */}
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="Homepage" href="/homepage">
-            <IonIcon aria-hidden="true" icon={home} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="profil" href="/profil">
-            <IonIcon aria-hidden="true" icon={person} />
-            <IonLabel>Profil</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="login" href="/login">
-            <IonIcon aria-hidden="true" icon={logIn} />
-            <IonLabel>Login</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
+            <Route path="/activity">
+              <Activity />
+            </Route>
+
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/homepage" />
+            </Route>
+          </IonRouterOutlet>
+
+          {/* HEADER */}
+          <Header />
+
+          {/* SECTION TABBAR */}
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="Homepage" href="/homepage">
+              <IonIcon aria-hidden="true" icon={home} />
+              <IonLabel>Home</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="profil" href="/profil">
+              <IonIcon aria-hidden="true" icon={person} />
+              <IonLabel>Profil</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="activity" href="/activity">
+              <IonIcon aria-hidden="true" icon={list} />
+              <IonLabel>Activités</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="login" href="/login">
+              <IonIcon aria-hidden="true" icon={logIn} />
+              <IonLabel>Login</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </AuthProvider>
     </IonReactRouter>
   </IonApp>
 );

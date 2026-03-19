@@ -2,6 +2,18 @@ import { Preferences } from "@capacitor/preferences";
 
 const API_URL = "http://localhost:8080";
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+export interface AuthResponse {
+  token: string;
+  user: User;
+  message?: string;
+}
+
 export async function register(
   email: string,
   username: string,
@@ -23,7 +35,7 @@ export async function register(
   return await response.json();
 }
 
-export async function login(email: string, password: string) {
+export async function login(email: string, password: string): Promise<AuthResponse> {
   const response = await fetch(`${API_URL}/login`, {
     method: "POST",
     headers: {
@@ -34,29 +46,70 @@ export async function login(email: string, password: string) {
 
   const data = await response.json();
 
-  if (response.ok) {
-    await Preferences.set({ key: "token", value: data.token }); // On stocke le token dans les préférences et dans le localStorage
+  if (response.ok && data.token) {
+    localStorage.setItem("token", data.token);
+    await Preferences.set({ key: "token", value: data.token });
   } else {
     throw new Error(data.message || "Connexion échouée");
   }
-
   return data;
 }
 
 export async function logout() {
+  localStorage.removeItem("token");
   await Preferences.remove({ key: "token" });
 }
 
-export async function getToken() {
-  //const { value } = await Preferences.get({ key: "token" });
-  const value  = await localStorage.getItem("token");
-  return value;
+export async function getToken(): Promise<string | null> {
+  const { value } = await Preferences.get({ key: "token" });
+  return value || null;
 }
 
 export async function getProfile() {
   const token = await getToken();
-  console.log("Token récupéré pour getProfileById:", token); // Debug: Affiche le token récupéré
-  const response = await fetch(`${API_URL}/profile/${token}}`, {
+  const name = await getProfile.name
+
+  if (!token) {
+    throw new Error("Utilisateur non authentifié");
+  }
+  
+  const response = await fetch(`${API_URL}/profile/${name}}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Erreur lors de la récupération du profil");
+  }
+
+  return await response.json();
+}
+
+export async function getActivities() {
+
+  const response = await fetch(`${API_URL}/activity`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Erreur lors de la récupération des activités");
+  }
+
+  return await response.json();
+}
+
+export async function getActivityById(id: string) {
+
+  const token = await getToken();
+
+  const response = await fetch(`${API_URL}/activity/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -66,7 +119,7 @@ export async function getProfile() {
 
   if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(errorData.message || "Erreur lors de la récupération du profil");
+    throw new Error(errorData.message || "Erreur lors de la récupération de votre activité");
   }
 
   return await response.json();

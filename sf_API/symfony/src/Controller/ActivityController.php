@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ActivityController extends AbstractController
 {
-    #[Route('/activity', name: 'activity', methods: ['POST'])]
+    #[Route('/activity/add', name: 'activity', methods: ['POST'])]
     public function addActivity(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $user = $this->getUser();
@@ -29,8 +29,10 @@ final class ActivityController extends AbstractController
         $activity = new Activity();
         $activity->setUser($user);
         $activity->setTitle($data['title']);
+        $activity->setType($data['type']);
         $activity->setDescription($data['description']);
         $activity->setPlace($data['place']);
+        $activity->setDuree($data['duree']);
         $activity->setNbrPlace($data['nbrPlace']);
 
 
@@ -60,6 +62,6 @@ final class ActivityController extends AbstractController
 
         $myActivities = $activityRepository->findAll();
 
-        return $this->json($myActivities, Response::HTTP_OK, [], ['groups' => 'activity:show']);
+        return $this->json($myActivities, Response::HTTP_OK);
     }
 }
