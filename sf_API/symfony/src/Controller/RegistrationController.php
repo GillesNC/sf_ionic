@@ -60,4 +60,17 @@ final class RegistrationController extends AbstractController
 
         return new JsonResponse(['message' => 'Désinscription réussie'], JsonResponse::HTTP_OK);
     }
+    
+    #[Route('/registered', name: 'app_registered_activities', methods: ['GET'])]
+    public function getRegisteredActivities(RegistrationRepository $registrationRepository): JsonResponse
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            return new JsonResponse(['message' => 'Utilisateur non authentifié'], JsonResponse::HTTP_UNAUTHORIZED);
+        }
+
+        $registrations = $registrationRepository->findBy(['user' => $user]);
+
+        return $this->json($registrations, JsonResponse::HTTP_OK, [], ['groups' => 'registration:read']);
+    }
 }
