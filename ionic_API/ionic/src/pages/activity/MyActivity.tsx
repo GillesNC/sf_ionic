@@ -8,7 +8,9 @@ import {
   IonItem,
   IonLabel,
 } from "@ionic/react";
-import { getMyActivities } from "../../services/activityServices";
+import {
+  getMyActivities,
+} from "../../services/activityServices";
 import "./Activity.css";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -79,14 +81,6 @@ export default function MyActivity() {
                         routerLink={`/edit-activity/${activity.id}`}
                       >
                         Modifier
-                      </IonButton>
-                      <IonButton
-                        fill="outline"
-                        color="danger"
-                        className="delete-button"
-                        routerLink={`/delete-activity/${activity.id}`}
-                      >
-                        Supprimer
                       </IonButton>
                     </div>
                   </div>

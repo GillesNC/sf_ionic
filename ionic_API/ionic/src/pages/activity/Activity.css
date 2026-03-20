@@ -39,3 +39,9 @@
   font-size: 1.2rem;
   text-align: center;
 }
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}

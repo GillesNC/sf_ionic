@@ -1,8 +1,29 @@
-import { IonContent, IonPage, IonInput, IonButton, IonToast } from "@ionic/react";
-import { useState } from "react";
-import { editActivity } from "../../services/activityServices";
+import {
+  IonContent,
+  IonPage,
+  IonInput,
+  IonButton,
+  IonToast,
+} from "@ionic/react";
+import { useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router";
+import { editActivity, getEditActivity } from "../../services/activityServices";
+
+interface Activity {
+  id: string;
+  title: string;
+  description: string;
+  type: string;
+  place: string;
+  nbrPlace: number;
+  duree: number;
+}
 
 export default function EditActivity() {
+  const { id } = useParams<{ id: string }>();
+  const history = useHistory();
+  const [activity, setActivity] = useState<Activity | null>(null);
+  const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("");
@@ -11,14 +32,34 @@ export default function EditActivity() {
   const [duree, setDuree] = useState(0);
   const [alertMessage, setAlertMessage] = useState("");
 
-    async function handleSubmit() {
-    if (!title || !description || !place || nbrPlace <= 0 || duree <= 0) {
-      alert("Veuillez remplir les champs obligatoires.");
-      return;
-    }
+  useEffect(() => {
+    const response = async () => {
+      try {
+        const data = await getEditActivity(id, {
+          title,
+          description,
+          type,
+          place,
+          nbrPlace,
+          duree,
+        } as Activity);
+        setActivity(data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération de l'activité :", error);
+        history.push("/homepage");
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    response();
+  }, [id, history]);
+
+  console.log("activity", activity);
+
+  const handleSubmit = async () => {
     try {
-      await editActivity("activityId", {
+      await editActivity(id, {
         title,
         description,
         type,
@@ -26,18 +67,13 @@ export default function EditActivity() {
         nbrPlace,
         duree,
       });
-      setTitle("");
-      setDescription("");
-      setType("");
-      setPlace("");
-      setNbrPlace(0);
-      setDuree(0);
       setAlertMessage("Activité modifiée avec succès !");
+      history.push("/my-activity");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      alert(`Erreur : ${error.message}`);
+      setAlertMessage(`Erreur : ${error.message}`);
     }
-  }
+  };
 
   return (
     <IonPage>
@@ -47,14 +83,15 @@ export default function EditActivity() {
           <p>Modifiez l'activité en remplissant les champs ci-dessous.</p>
           <div className="login-card">
             <div className="login-field-label">
-              <span>Titre actuel : {title}</span>
+              Titre actuel : {title}
+              {activity && <span>Titre actuel : {activity.title}</span>}
             </div>
             <div className="login-input-wrapper">
               <IonInput
                 type="text"
                 placeholder="Le nouveau titre de l'activité"
                 value={title}
-                onIonChange={(e) => setTitle(e.detail.value!)}  
+                onIonChange={(e) => setTitle(e.detail.value!)}
               />
             </div>
 
@@ -119,7 +156,7 @@ export default function EditActivity() {
             </div>
 
             <IonButton className="login-submit-btn" onClick={handleSubmit}>
-             Sauvegarder les modifications
+              Sauvegarder les modifications
             </IonButton>
 
             <IonToast

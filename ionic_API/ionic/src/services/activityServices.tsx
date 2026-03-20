@@ -111,6 +111,32 @@ export async function editActivity(id: string, activityData: {
   return await response.json();
 }
 
+export async function getEditActivity(id: string, activityData: {
+  title?: string;
+  description?: string;
+  type?: string;
+  place?: string;
+  nbrPlace?: number;
+  duree?: number;
+}) {
+  const token = await getToken();
+
+  if (!token) {
+    throw new Error("Utilisateur non authentifié");
+  }
+
+  const response = await fetch(`${API_URL}/edit/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(activityData),
+  });
+
+  return await response.json();
+}
+
 export async function deleteActivity(id: string) {
   const token = await getToken();
 

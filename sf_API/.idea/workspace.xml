@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c02866d-a677-43c1-a16c-5076a073402d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/15903218-d6b9-4884-acc2-3481ce0118f6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/15903218-d6b9-4884-acc2-3481ce0118f6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony/config/packages/lexik_jwt_authentication.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/config/packages/lexik_jwt_authentication.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony/src/Controller/ActivityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/src/Controller/ActivityController.php" afterDir="false" />
-    </list>
+    <list default="true" id="2c02866d-a677-43c1-a16c-5076a073402d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
