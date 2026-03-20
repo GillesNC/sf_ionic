@@ -1,0 +1,62 @@
+.login-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container p {
+    margin-bottom: 30px;
+    color: #666666;
+    font-size: 16px;
+    text-align: center;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 400px;
+    padding: 20px;
+    background-color: #f6f6f6;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-field-label {
+    font-weight: bold;
+}
+
+.login-input-wrapper {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 5px;
+    align-items: center;
+}
+
+
+.login-input-wrapper:focus-within {
+    border-color: #007bff;
+}
+
+.login-eye-btn {
+    display: flex;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 20px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.login-eye-btn ion-icon.ios.hydrated {
+    font-size: 18px;
+    font-weight: bold;
+    color: #888888;
+}
