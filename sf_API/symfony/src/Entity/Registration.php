@@ -16,15 +16,13 @@ class Registration
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'registrations')]
-    #[Groups(['registration:read', 'registration:show'])]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'registrations')]
-    #[Groups(['registration:read', 'registration:show'])]
+    
     private ?Activity $activity = null;
 
     #[ORM\Column]
-    #[Groups(['registration:read', 'registration:show'])]
     private \DateTimeImmutable $registeredAt;
 
     public function __construct()

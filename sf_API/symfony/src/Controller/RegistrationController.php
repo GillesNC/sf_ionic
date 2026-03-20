@@ -69,7 +69,7 @@ final class RegistrationController extends AbstractController
             return new JsonResponse(['message' => 'Utilisateur non authentifié'], JsonResponse::HTTP_UNAUTHORIZED);
         }
 
-        $registrations = $registrationRepository->findBy(['user' => $user]);
+        $registrations = $registrationRepository->getAllRegistered(['user' => $user]);
 
         return $this->json($registrations, JsonResponse::HTTP_OK, [], ['groups' => 'registration:read']);
     }

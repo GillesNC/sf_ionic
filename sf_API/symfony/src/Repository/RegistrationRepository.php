@@ -12,4 +12,16 @@ class RegistrationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Registration::class);
     }
+
+    public function getAllRegistered($value): array
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r', 'u.name', 'a.title')
+            ->join('r.user', 'u')
+            ->join('r.activity', 'a')
+            ->where('r.activity = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
 }
