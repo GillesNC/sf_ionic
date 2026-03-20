@@ -1,0 +1,156 @@
+{
+  "hash": "70277086",
+  "configHash": "ad9143aa",
+  "lockfileHash": "35e3d067",
+  "browserHash": "f32f35e9",
+  "optimized": {
+    "@capacitor/preferences": {
+      "src": "../../node_modules/@capacitor/preferences/dist/esm/index.js",
+      "file": "@capacitor_preferences.js",
+      "fileHash": "b22be88a",
+      "needsInterop": false
+    },
+    "@ionic/react-router": {
+      "src": "../../node_modules/@ionic/react-router/dist/index.js",
+      "file": "@ionic_react-router.js",
+      "fileHash": "cb296d2c",
+      "needsInterop": false
+    },
+    "@ionic/react": {
+      "src": "../../node_modules/@ionic/react/dist/index.js",
+      "file": "@ionic_react.js",
+      "fileHash": "c224446b",
+      "needsInterop": false
+    },
+    "ionicons/icons": {
+      "src": "../../node_modules/ionicons/icons/index.mjs",
+      "file": "ionicons_icons.js",
+      "fileHash": "e802e3d4",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "f0a965ab",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/esm/react-router-dom.js",
+      "file": "react-router-dom.js",
+      "fileHash": "ca317932",
+      "needsInterop": false
+    },
+    "react-router": {
+      "src": "../../node_modules/react-router/esm/react-router.js",
+      "file": "react-router.js",
+      "fileHash": "045dc918",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "ff02b7b0",
+      "needsInterop": true
+    },
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "f4097ce9",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "dist-BsaSk9_N": {
+      "file": "dist-BsaSk9_N.js",
+      "isDynamicEntry": false
+    },
+    "dist-DwISG4--": {
+      "file": "dist-DwISG4--.js",
+      "isDynamicEntry": false
+    },
+    "p-9VcRUwdB-CR1KLRpo": {
+      "file": "p-9VcRUwdB-CR1KLRpo.js",
+      "isDynamicEntry": false
+    },
+    "p-BJoMtgfR-D9rUZpa5": {
+      "file": "p-BJoMtgfR-D9rUZpa5.js",
+      "isDynamicEntry": false
+    },
+    "p-BgwEQWW6-C996cVP3": {
+      "file": "p-BgwEQWW6-C996cVP3.js",
+      "isDynamicEntry": true
+    },
+    "p-BmVRXR1y-Cdf61RUs": {
+      "file": "p-BmVRXR1y-Cdf61RUs.js",
+      "isDynamicEntry": false
+    },
+    "p-C53feagD-CYW0A4Js": {
+      "file": "p-C53feagD-CYW0A4Js.js",
+      "isDynamicEntry": false
+    },
+    "p-C59ryAuS-DBRIFaDI": {
+      "file": "p-C59ryAuS-DBRIFaDI.js",
+      "isDynamicEntry": false
+    },
+    "p-CBzELu-H-CPUqh-_T": {
+      "file": "p-CBzELu-H-CPUqh-_T.js",
+      "isDynamicEntry": false
+    },
+    "p-CU1SSH8_-C3prkbcs": {
+      "file": "p-CU1SSH8_-C3prkbcs.js",
+      "isDynamicEntry": false
+    },
+    "p-Cl0B-RWe-DyB7mqIA": {
+      "file": "p-Cl0B-RWe-DyB7mqIA.js",
+      "isDynamicEntry": false
+    },
+    "p-CneGxKsZ-DXjocPK5": {
+      "file": "p-CneGxKsZ-DXjocPK5.js",
+      "isDynamicEntry": true
+    },
+    "p-Cwv-vmkN-_Nd-Gdkx": {
+      "file": "p-Cwv-vmkN-_Nd-Gdkx.js",
+      "isDynamicEntry": true
+    },
+    "p-Cz5nLPGT-CkCsY7K3": {
+      "file": "p-Cz5nLPGT-CkCsY7K3.js",
+      "isDynamicEntry": true
+    },
+    "p-D13Eaw-8-CmPZk2Lo": {
+      "file": "p-D13Eaw-8-CmPZk2Lo.js",
+      "isDynamicEntry": false
+    },
+    "p-D6Ynv7Xh-Dv5bGX4n": {
+      "file": "p-D6Ynv7Xh-Dv5bGX4n.js",
+      "isDynamicEntry": false
+    },
+    "p-DgbT0exM-DhwO7jTN": {
+      "file": "p-DgbT0exM-DhwO7jTN.js",
+      "isDynamicEntry": false
+    },
+    "p-ZjP4CjeZ-B7Af306i": {
+      "file": "p-ZjP4CjeZ-B7Af306i.js",
+      "isDynamicEntry": false
+    },
+    "p-vEbVo2hO-Cj63OdEB": {
+      "file": "p-vEbVo2hO-Cj63OdEB.js",
+      "isDynamicEntry": false
+    },
+    "react-BZ3rxvNc": {
+      "file": "react-BZ3rxvNc.js",
+      "isDynamicEntry": false
+    },
+    "react-dom-Do5OZO7D": {
+      "file": "react-dom-Do5OZO7D.js",
+      "isDynamicEntry": false
+    },
+    "react-router-Djp52scH": {
+      "file": "react-router-Djp52scH.js",
+      "isDynamicEntry": false
+    },
+    "web-BIHT5elU": {
+      "file": "web-BIHT5elU.js",
+      "isDynamicEntry": true
+    }
+  }
+}
