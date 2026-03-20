@@ -21,17 +21,8 @@ final class ActivityController extends AbstractController
     {
         $activities = $activityRepository->showByAmount(10);
         //$activities = $activityRepository->findAll();
-
         return $this->json($activities, Response::HTTP_OK, [], ['groups' => 'activity:read']);
     }
-
-    #[Route('/{id}', name: 'get_activity', methods: ['GET'])]
-    public function getActivity(ActivityRepository $activityRepository, int $id): JsonResponse
-    {        
-        $detailActivity = $activityRepository->find($id);
-
-        return $this->json($detailActivity, Response::HTTP_OK, [], ['groups' => 'activity:read']);
-    }   
 
     #[Route('/add', name: 'activity', methods: ['POST'])]
     public function addActivity(Request $request, EntityManagerInterface $entityManager): JsonResponse
@@ -75,5 +66,62 @@ final class ActivityController extends AbstractController
         $myActivities = $activityRepository->findby(['user' => $user]);
 
         return $this->json($myActivities, Response::HTTP_OK, [], ['groups' => 'activity:read']);
+    }
+
+    #[Route('/edit/{id}', name: 'edit_activity', methods: ['GET', 'POST'])]
+    public function editActivity(Request $request, EntityManagerInterface $entityManager, ActivityRepository $activityRepository, int $id): JsonResponse
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            return new JsonResponse(['error' => 'Non authentifié'], 401);
+        }
+
+        $activity = $activityRepository->find($id);
+
+        $data = json_decode($request->getContent(), true);
+        if ($data === null) {
+            return new JsonResponse(['error' => 'Données invalides'], 400);
+        }
+
+        $activity->setTitle($data['title']);
+        $activity->setType($data['type']);
+        $activity->setDescription($data['description']);
+        $activity->setPlace($data['place']);
+        $activity->setDuree($data['duree']);
+        $activity->setNbrPlace($data['nbrPlace']);
+        $entityManager->flush();
+
+        return $this->json([
+            'message' => 'Votre activité a été modifiée avec succès'
+        ], Response::HTTP_OK);
+    }
+
+    #[Route('/delete/{id}', name: 'delete_activity', methods: ['GET','DELETE'])]
+    public function deleteActivity(EntityManagerInterface $entityManager, ActivityRepository $activityRepository, int $id): JsonResponse
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            return new JsonResponse(['error' => 'Non authentifié'], 401);
+        }
+        $activity = $activityRepository->find($id);
+
+        $entityManager->remove($activity);
+        $entityManager->flush();
+
+        return $this->json([
+            'message' => 'Votre activité a été supprimée avec succès'
+        ], Response::HTTP_OK);
+    }
+
+    #[Route('/{id}', name: 'get_activity', methods: ['GET'])]
+    public function getActivity(ActivityRepository $activityRepository, int $id): JsonResponse
+    {
+        $detailActivity = $activityRepository->findOneBy(['id' => $id]);
+
+        if (!$detailActivity) {
+            return new JsonResponse(['error' => 'Activité non trouvée'], 404);
+        }
+
+        return $this->json($detailActivity, Response::HTTP_OK, [], ['groups' => 'activity:read']);
     }
 }

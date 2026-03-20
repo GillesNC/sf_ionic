@@ -14,10 +14,11 @@ import {
   IonSpinner,
 } from "@ionic/react";
 import "./Homepage.css";
-import { getActivities } from "../../services/authServices";
+import { getActivities } from "../../services/activityServices";
 import { useEffect, useState } from "react";
 
 interface Activity {
+  id: number;
   title: string;
   type: string | null;
   description: string | null;
@@ -47,6 +48,8 @@ export default function Homepage() {
     activities();
   }, []);
 
+  console.log("Activities:", activities);
+
   return (
     <IonPage>
       <IonHeader>
@@ -72,7 +75,7 @@ export default function Homepage() {
                 <p>Lieu : {activity.place}</p>
                 <p>Nombre de places : {activity.nbrPlace}</p>
                 <p>Durée : {activity.duree} heures</p>
-                <IonButton expand="block" color="primary">
+                <IonButton routerLink={`/activity/${activity.id}`} expand="block" color="primary">
                   Voir les détails
                 </IonButton>
               </IonCardContent>

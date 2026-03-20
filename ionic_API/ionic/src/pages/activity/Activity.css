@@ -11,16 +11,31 @@
   margin-top: 2rem;
 }
 
-.accordion {
-  background-color: red;
-}
-
-.accordion {
-  background-color: red;
-}
-
 .item {
-  border: 1px solid #eca1ff;
+  border: 2px solid #cdcdcd;
   border-radius: 5px;
   margin-bottom: 1rem;
+}
+
+.accordion-content {
+  margin-bottom: 20px;
+  border: 2px solid #cdcdcd;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.add-activity-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.add-activity-container p {
+  font-weight: bold ;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  text-align: center;
 }

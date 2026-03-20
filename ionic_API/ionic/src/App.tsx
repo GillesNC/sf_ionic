@@ -10,12 +10,13 @@ import { AuthProvider } from "./contexts/AuthContext";
 
 // Import des pages
 import Homepage from "./pages/Homepage/Homepage";
-import Tab3 from "./pages/Tab3";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Profil from "./pages/profil/Profil";
 import MyActivity from "./pages/activity/MyActivity";
+import Show from "./pages/activity/show";
 import AddActivity from "./pages/activity/AddActivity";
+import EditActivity from "./pages/activity/editActivity";
 
 // Import des composants
 import Header from "./components/header/header";
@@ -63,28 +64,25 @@ const App: React.FC = () => (
             <Route exact path="/homepage">
               <Homepage />
             </Route>
-            <Route path="/tab3">
-              <Tab3 />
-            </Route>
             <Route path="/register">
               <Register />
             </Route>
-
             <Route path="/profil">
               <Profil />
             </Route>
-
-            <Route path="/my-activity">
-              <MyActivity />
-            </Route>
-
-            <Route path="/add-activity">
-              <AddActivity />
-            </Route>
-
             <Route path="/login">
               <Login />
             </Route>
+
+            {/* Routes pour les activités */}
+            <Route path="/my-activity">
+              <MyActivity />
+            </Route>
+            <Route path="/add-activity">
+              <AddActivity />
+            </Route>
+            <Route path="/activity/:id" component={Show} exact />
+            <Route path="/edit-activity/:id" component={EditActivity} exact />
             <Route exact path="/">
               <Redirect to="/homepage" />
             </Route>

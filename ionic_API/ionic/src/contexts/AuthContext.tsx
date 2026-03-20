@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { login as loginService, logout as logoutService, getProfile } from "../services/authServices";
+import { login as loginService, logout as logoutService } from "../services/authServices";
+import { getProfile } from "../services/profileServices";
 
 
 interface AuthContextType {

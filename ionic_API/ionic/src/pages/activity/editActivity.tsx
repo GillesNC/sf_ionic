@@ -1,8 +1,8 @@
 import { IonContent, IonPage, IonInput, IonButton, IonToast } from "@ionic/react";
 import { useState } from "react";
-import { createActivity } from "../../services/activityServices";
+import { editActivity } from "../../services/activityServices";
 
-export default function AddActivity() {
+export default function EditActivity() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("");
@@ -11,14 +11,14 @@ export default function AddActivity() {
   const [duree, setDuree] = useState(0);
   const [alertMessage, setAlertMessage] = useState("");
 
-  async function handleSubmit() {
+    async function handleSubmit() {
     if (!title || !description || !place || nbrPlace <= 0 || duree <= 0) {
       alert("Veuillez remplir les champs obligatoires.");
       return;
     }
 
     try {
-      await createActivity({
+      await editActivity("activityId", {
         title,
         description,
         type,
@@ -32,7 +32,7 @@ export default function AddActivity() {
       setPlace("");
       setNbrPlace(0);
       setDuree(0);
-      setAlertMessage("Activité créée avec succès !");
+      setAlertMessage("Activité modifiée avec succès !");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       alert(`Erreur : ${error.message}`);
@@ -43,18 +43,18 @@ export default function AddActivity() {
     <IonPage>
       <IonContent className="ion-padding">
         <div className="login-container">
-          <h2 className="login-title">Ajouter une activité</h2>
-          <p>Créez une nouvelle activité en remplissant les champs ci-dessous.</p>
+          <h2 className="login-title">Modifier l'activité {title}</h2>
+          <p>Modifiez l'activité en remplissant les champs ci-dessous.</p>
           <div className="login-card">
             <div className="login-field-label">
-              <span>Votre titre</span>
+              <span>Titre actuel : {title}</span>
             </div>
             <div className="login-input-wrapper">
               <IonInput
                 type="text"
-                placeholder="Entrez le titre de l'activité"
+                placeholder="Le nouveau titre de l'activité"
                 value={title}
-                onIonChange={(e) => setTitle(e.detail.value!)}
+                onIonChange={(e) => setTitle(e.detail.value!)}  
               />
             </div>
 
@@ -119,7 +119,7 @@ export default function AddActivity() {
             </div>
 
             <IonButton className="login-submit-btn" onClick={handleSubmit}>
-              Créer l'activité
+             Sauvegarder les modifications
             </IonButton>
 
             <IonToast

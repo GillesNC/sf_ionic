@@ -8,7 +8,7 @@ import {
   IonItem,
   IonLabel,
 } from "@ionic/react";
-import { getActivityById } from "../../services/authServices";
+import { getMyActivities } from "../../services/activityServices";
 import "./Activity.css";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -32,7 +32,7 @@ export default function MyActivity() {
     const activities = async () => {
       try {
         if (user) {
-          const data = await getActivityById();
+          const data = await getMyActivities();
           setActivities(data);
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,8 +45,6 @@ export default function MyActivity() {
     activities();
   }, [user]);
 
-  console.log("Activities:", activities);
-
   return (
     <IonContent className="ion-padding">
       <h2 className="activity-title">Mes activités</h2>
@@ -57,7 +55,6 @@ export default function MyActivity() {
             {activities.length > 0 ? (
               activities.map((activity, index) => (
                 <IonAccordion key={index} value={`activity-${index}`}>
-                  {activity.title}
                   <IonItem slot="header">
                     <IonLabel>{activity.title}</IonLabel>
                   </IonItem>
@@ -76,6 +73,22 @@ export default function MyActivity() {
                       <strong>Nombre de places :</strong>{" "}
                       {activity.nbrPlace || "N/A"}
                     </p>
+                    <div>
+                      <IonButton
+                        className="edit-button"
+                        routerLink={`/edit-activity/${activity.id}`}
+                      >
+                        Modifier
+                      </IonButton>
+                      <IonButton
+                        fill="outline"
+                        color="danger"
+                        className="delete-button"
+                        routerLink={`/delete-activity/${activity.id}`}
+                      >
+                        Supprimer
+                      </IonButton>
+                    </div>
                   </div>
                 </IonAccordion>
               ))
@@ -83,7 +96,8 @@ export default function MyActivity() {
               <p>Aucune activité trouvée.</p>
             )}
           </IonAccordionGroup>
-          <div>
+          <div className="add-activity-container">
+            <p>Vous souhaitez ajouter une nouvelle activité ?</p>
             <IonButton
               className="add-activity-button"
               routerLink="/add-activity"

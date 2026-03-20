@@ -14,6 +14,7 @@ export interface AuthResponse {
   message?: string;
 }
 
+// PARTIE INSCRIPTION USER
 export async function register(
   email: string,
   username: string,
@@ -35,6 +36,7 @@ export async function register(
   return await response.json();
 }
 
+// PARTIE LOGIN & LOGOUT
 export async function login(email: string, password: string): Promise<AuthResponse> {
   const response = await fetch(`${API_URL}/login`, {
     method: "POST",
@@ -63,93 +65,4 @@ export async function logout() {
 export async function getToken(): Promise<string | null> {
   const { value } = await Preferences.get({ key: "token" });
   return value || null;
-}
-
-export async function getProfile() {
-  const token = await getToken();
-
-  if (!token) {
-    throw new Error("Utilisateur non authentifié");
-  }
-  
-  const response = await fetch(`${API_URL}/profile`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Erreur lors de la récupération du profil");
-  }
-
-  return await response.json();
-}
-
-export async function getActivities() {
-
-  const response = await fetch(`${API_URL}/activity`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Erreur lors de la récupération des activités");
-  }
-
-  return await response.json();
-}
-
-export async function getActivityById() {
-  const token = await getToken();
-
-  const response = await fetch(`${API_URL}/my-activity`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Erreur lors de la récupération de votre activité");
-  }
-
-  return await response.json();
-}
-
-export async function createActivity(activityData: {
-  title: string;
-  description: string;
-  type?: string;
-  place: string;
-  nbrPlace?: number;
-  duree?: number;
-}) {
-  const token = await getToken();
-
-  if (!token) {
-    throw new Error("Utilisateur non authentifié");
-  }
-
-  const response = await fetch(`${API_URL}/activity/add`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(activityData),
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Erreur lors de la création de l'activité");
-  }
-
-  return await response.json();
 }
