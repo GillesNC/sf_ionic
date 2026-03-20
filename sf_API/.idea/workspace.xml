@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c02866d-a677-43c1-a16c-5076a073402d" name="Changes" comment="" />
+    <list default="true" id="2c02866d-a677-43c1-a16c-5076a073402d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/symfony/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/src/Controller/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony/src/Entity/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/symfony/src/Entity/Registration.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +26,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;front&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;prod&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/gilles/Sites/sf_ionic/sf_API&quot;
   },
   &quot;keyToStringList&quot;: {

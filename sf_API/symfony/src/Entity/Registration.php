@@ -12,17 +12,17 @@ class Registration
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['registration:read', 'registration:show'])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'registrations')]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'registrations')]
-    #[Groups(['registration:read'])]
+    
     private ?Activity $activity = null;
 
     #[ORM\Column]
-    #[Groups(['registration:read'])]
     private \DateTimeImmutable $registeredAt;
 
     public function __construct()

@@ -1,0 +1,35 @@
+import { t as d } from "./p-ZjP4CjeZ-B7Af306i.js";
+//#region node_modules/@ionic/core/components/p-CIGNaXM1.js
+/*!
+* (C) Ionic http://ionicframework.com - MIT License
+*/
+var r = () => {
+	if (void 0 !== d) return d.Capacitor;
+};
+//#endregion
+//#region node_modules/@ionic/core/components/p-D13Eaw-8.js
+/*!
+* (C) Ionic http://ionicframework.com - MIT License
+*/
+var n, i;
+(function(o) {
+	o.Unimplemented = "UNIMPLEMENTED", o.Unavailable = "UNAVAILABLE";
+})(n || (n = {})), function(o) {
+	o.Body = "body", o.Ionic = "ionic", o.Native = "native", o.None = "none";
+}(i || (i = {}));
+var t = {
+	getEngine() {
+		const n = r();
+		if (null == n ? void 0 : n.isPluginAvailable("Keyboard")) return n.Plugins.Keyboard;
+	},
+	getResizeMode() {
+		const o = this.getEngine();
+		return (null == o ? void 0 : o.getResizeMode) ? o.getResizeMode().catch(((o) => {
+			if (o.code !== n.Unimplemented) throw o;
+		})) : Promise.resolve(void 0);
+	}
+};
+//#endregion
+export { t as n, r, i as t };
+
+//# sourceMappingURL=p-D13Eaw-8-CmPZk2Lo.js.map
