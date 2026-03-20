@@ -19,6 +19,6 @@ final class ProfileController extends AbstractController
             return new JsonResponse(['error' => 'Non authentifié'], 401);
         }
 
-        return $this->json($user);
+        return $this->json($user, 200, [], ['groups' => 'user:show']);
     }
 }

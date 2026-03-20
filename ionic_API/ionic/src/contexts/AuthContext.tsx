@@ -24,7 +24,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const checkUser = async () => {
       try {
         const data = await getProfile();
-        console.log("Profil récupéré :", data);
         if (data) {
           setUser(data);
         }

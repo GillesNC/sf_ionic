@@ -67,13 +67,12 @@ export async function getToken(): Promise<string | null> {
 
 export async function getProfile() {
   const token = await getToken();
-  const name = await getProfile.name
 
   if (!token) {
     throw new Error("Utilisateur non authentifié");
   }
   
-  const response = await fetch(`${API_URL}/profile/${name}}`, {
+  const response = await fetch(`${API_URL}/profile`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -105,11 +104,10 @@ export async function getActivities() {
   return await response.json();
 }
 
-export async function getActivityById(id: string) {
-
+export async function getActivityById() {
   const token = await getToken();
 
-  const response = await fetch(`${API_URL}/activity/${id}`, {
+  const response = await fetch(`${API_URL}/my-activity`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -120,6 +118,37 @@ export async function getActivityById(id: string) {
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || "Erreur lors de la récupération de votre activité");
+  }
+
+  return await response.json();
+}
+
+export async function createActivity(activityData: {
+  title: string;
+  description: string;
+  type?: string;
+  place: string;
+  nbrPlace?: number;
+  duree?: number;
+}) {
+  const token = await getToken();
+
+  if (!token) {
+    throw new Error("Utilisateur non authentifié");
+  }
+
+  const response = await fetch(`${API_URL}/activity/add`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(activityData),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Erreur lors de la création de l'activité");
   }
 
   return await response.json();

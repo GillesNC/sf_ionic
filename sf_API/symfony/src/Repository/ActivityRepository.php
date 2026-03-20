@@ -16,6 +16,16 @@ class ActivityRepository extends ServiceEntityRepository
         parent::__construct($registry, Activity::class);
     }
 
+    public function showByAmount($value): array
+    {
+        return $this->createQueryBuilder('a')
+            ->setMaxResults($value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     //    /**
     //     * @return Activity[] Returns an array of Activity objects
     //     */

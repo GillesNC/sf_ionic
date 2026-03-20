@@ -1,7 +1,13 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { useAuth } from '../../contexts/AuthContext';
-import { IonButton } from '@ionic/react';
-import './Profil.css';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
+import { useAuth } from "../../contexts/AuthContext";
+import { IonButton } from "@ionic/react";
+import "./Profil.css";
 
 export default function Profil() {
   const { user, logout } = useAuth();
@@ -23,7 +29,11 @@ export default function Profil() {
             </IonButton>
           </div>
         ) : (
-          <p>Chargement du profil...</p>
+          <div className="not-authenticated">
+            <h2>Mon profil</h2>
+            <p>Veuillez vous connecter pour voir vos activités.</p>
+            <IonButton routerLink="/login">Se connecter</IonButton>
+          </div>
         )}
       </IonContent>
     </IonPage>
