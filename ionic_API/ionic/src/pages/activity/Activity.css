@@ -1,0 +1,47 @@
+.activity-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+}
+
+.activity-spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.item {
+  border: 2px solid #cdcdcd;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.accordion-content {
+  margin-bottom: 20px;
+  border: 2px solid #cdcdcd;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.add-activity-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.add-activity-container p {
+  font-weight: bold ;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}

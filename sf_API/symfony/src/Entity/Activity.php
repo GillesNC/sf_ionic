@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActivityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,6 +16,7 @@ class Activity
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['activity:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -47,9 +50,16 @@ class Activity
     #[ORM\ManyToOne(inversedBy: 'activities')]
     private ?User $user = null;
 
+    /**
+     * @var Collection<int, Registration>
+     */
+    #[ORM\OneToMany(targetEntity: Registration::class, mappedBy: 'activity')]
+    private Collection $registrations;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->registrations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -151,5 +161,13 @@ class Activity
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Registration>
+     */
+    public function getRegistrations(): Collection
+    {
+        return $this->registrations;
     }
 }
